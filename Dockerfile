@@ -27,3 +27,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt update \
   && apt -y install gdebi \
   && gdebi --non-interactive /${INSTALL_DEB}
 
+# Clean up
+RUN rm -f /${INSTALL_DEB} && \
+    apt-get autoremove && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
